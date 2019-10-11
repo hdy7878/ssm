@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.dao.DemoMapper">
+	
+	<!-- <select id="findUser" parameterType="String" resultType="com.demo.pojo.Demo">
+		select * from ssm_user where username = #{username} and password = #{password} and isAdminFlag = #{isAdminFlag}
+	</select> -->
+	
+	<select id="findUserByName" parameterType="String" resultType="com.demo.pojo.Demo">
+		select * from ssm_user where username = #{username} and isAdminFlag = 0
+	</select>
+	
+	<insert id="addUserNotAdmin" parameterType="com.demo.pojo.Demo">
+		insert into ssm_user (id,username,password,isAdminFlag) VALUES 
+			(#{id},#{username},#{password},#{isAdminFlag})
+	</insert>
+	
+	<select id="findUser" parameterType="String" resultType="com.demo.pojo.Demo">
+		select * from ssm_user where username = #{username} and password = #{password} and isAdminFlag = #{isAdminFlag}
+	</select>
+	
+	<select id="findAllNews" resultType="com.demo.pojo.News">
+		select * from ssm_news
+	</select>
+	
+	<insert id="addNews" parameterType="com.demo.pojo.News">
+		insert into ssm_news (id,title,content,picture,isDeleteFlag) VALUES 
+			(#{id},#{title},#{content},#{picture},#{isDeleteFlag})
+	</insert>
+	
+	<update id="updateNews1" parameterType="String">
+		update ssm_news set isDeleteFlag = 0 where id = #{id}
+	</update>
+	
+	<update id="updateNews2" parameterType="String">
+		update ssm_news set isDeleteFlag = 1 where id = #{id}
+	</update>
+	
+	<select id="findNotDeleteNews" resultType="com.demo.pojo.News">
+		select * from ssm_news where isDeleteFlag = 0
+	</select>
+	
+	<select id="findNewsById" parameterType="String" resultType="com.demo.pojo.News">
+		select * from ssm_news where id = #{id}
+	</select>
+	
+	
+	
+</mapper>
